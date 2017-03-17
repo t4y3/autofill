@@ -1,0 +1,45 @@
+/* Extending The Inheritances */
+
+.container {
+    max-width: 640px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Custom color */
+.button-black {
+  background-color: black;
+  border-color: black;
+}
+.button-black.button-clear,
+.button-black.button-outline {
+  background-color: transparent;
+  color: black;
+}
+.button-black.button-clear {
+  border-color: transparent;
+}
+
+/* Custom size */
+.button-small {
+  font-size: .8rem;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  padding: 0 1.5rem;
+}
+
+.button-large {
+  font-size: 1.4rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding: 0 2rem;
+}
+
+/* margin-bottom: 0 */
+.button, button, dd, dt, li {
+    margin-bottom: 0;
+}
+
+fieldset, input, select, textarea {
+    margin-bottom: 0;
+}

@@ -1,0 +1,34 @@
+{
+  "name": "autofill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build & npm run copy & npm run watch & npm run api",
+    "copy": "cpx 'src/*.html' -w dist/ & cpx 'src/css/*.css' -w dist/css/",
+    "build": "browserify -t riotify src/js/app.js -o dist/js/app.js",
+    "watch": "npm run watch:js & npm run watch:tag",
+    "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run build'",
+    "watch:tag": "chokidar 'src/tags/**/*.tag' -c 'npm run build'",
+    "api": "json-server -w src/api/tasks.json -p 3005 & json-server -w src/api/items.json -p 3006"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t4y3/autofill.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t4y3/autofill/issues"
+  },
+  "homepage": "https://github.com/t4y3/autofill#readme",
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "chokidar-cli": "^1.2.0",
+    "cpx": "^1.5.0",
+    "riot": "^3.3.2",
+    "riotify": "^2.0.0",
+    "superagent": "^3.5.0"
+  }
+}

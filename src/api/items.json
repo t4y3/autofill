@@ -1,0 +1,29 @@
+{
+    "items": [
+        {
+            "type": "text",
+            "name": "text",
+            "value": "text_test"
+        },
+        {
+            "type": "textarea",
+            "name": "textarea",
+            "value": "textarea_test"
+        },
+        {
+            "type": "select",
+            "name": "select",
+            "value": "select_1"
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox",
+            "value": "true"
+        },
+        {
+            "type": "radio",
+            "name": "radio",
+            "value": "radio_1"
+        }
+    ]
+}
