@@ -1,14 +1,4 @@
-<fa-root>
-    <!-- tag -->
-    <fa-tasks data="{ tasks }"></fa-tasks>
-
-    <style>
-        :scope {
-            display: block;
-        }
-    </style>
-
-    <script>
+riot.tag2('fa-root', '<fa-tasks data="{tasks}"></fa-tasks>', 'fa-root,[data-is="fa-root"]{ display: block; }', '', function(opts) {
         this.on('before-mount', () => {
 
             this.tasks = [];
@@ -37,6 +27,4 @@
 
             this.update();
         };
-    </script>
-
-</fa-root>
+});

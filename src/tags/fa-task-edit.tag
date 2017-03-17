@@ -1,4 +1,5 @@
 <fa-task-edit>
+    <!-- tag -->
     <h1>Edit</h1>
     <div class="fa-buttons">
         <a class="button button-small" href="#" onclick="{ back }">Back</a>
@@ -19,17 +20,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr each="{ item, i in items }">
+                <tr each="{ items }">
                     <td>
                         <select>
-                            <option value="text" selected={ item.type === 'text' }>text</option>
-                            <option value="textarea" selected={ item.type === 'textarea' }>textarea</option>
-                            <option value="checkbox" selected={ item.type === 'checkbox' }>checkbox</option>
-                            <option value="radio" selected={ item.type === 'radio' }>radio</option>
+                            <option value="text" selected={ type === 'text' }>text</option>
+                            <option value="textarea" selected={ type === 'textarea' }>textarea</option>
+                            <option value="checkbox" selected={ type === 'checkbox' }>checkbox</option>
+                            <option value="radio" selected={ type === 'radio' }>radio</option>
                         </select>
                     </td>
-                    <td><input type="text" placeholder="NAME" value="{ item.name }"></td>
-                    <td><input type="text" placeholder="John Smith" value="{ item.value }"></td>
+                    <td><input type="text" placeholder="NAME" value="{ name }"></td>
+                    <td><input type="text" placeholder="John Smith" value="{ value }"></td>
                     <td><a class="button button-small button-outline" href="#" onclick="{ deleteItem }">Delete</a></td>
                 </tr>
                 <tr>

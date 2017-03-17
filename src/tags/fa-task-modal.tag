@@ -33,7 +33,6 @@
             if (this.opts.callback) {
                 this.opts.callback(name);
             }
-            this.unmount();
         };
     </script>
 

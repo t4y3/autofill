@@ -1,41 +1,4 @@
-<fa-tasks>
-    <h1 show="{ !isEdit }">Task List</h1>
-    <table show="{ !isEdit }">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Count</th>
-                <th>Edit</th>
-                <th>Run</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr each="{ tasks }">
-                <td>{ name }</td>
-                <td>{ count }</td>
-                <td><a class="button button-small button-outline" href="#" onclick="{ editTask }">Edit</a></td>
-                <td><a class="button button-small" href="#">Run</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a class="button button-small" href="#" onclick="{ addTask }">Add</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <fa-task-edit data="{ items }" if="{ isEdit }" callback="{ backCallback }"></fa-task-edit>
-
-    <fa-task-modal if="{ isModalOpen }" callback="{ addTaskCallback }"></fa-task-modal>
-
-    <style>
-        :scope {
-            display: block;
-        }
-    </style>
-
-    <script>
+riot.tag2('fa-tasks', '<h1 show="{!isEdit}">Task List</h1> <table show="{!isEdit}"> <thead> <tr> <th>Name</th> <th>Count</th> <th>Edit</th> <th>Run</th> </tr> </thead> <tbody> <tr each="{tasks}"> <td>{name}</td> <td>{count}</td> <td><a class="button button-small button-outline" href="#" onclick="{editTask}">Edit</a></td> <td><a class="button button-small" href="#">Run</a></td> </tr> <tr> <td></td> <td></td> <td></td> <td><a class="button button-small" href="#" onclick="{addTask}">Add</a></td> </tr> </tbody> </table> <fa-task-edit data="{items}" if="{isEdit}" callback="{backCallback}"></fa-task-edit> <fa-task-modal if="{isModalOpen}" callback="{addTaskCallback}"></fa-task-modal>', 'fa-tasks,[data-is="fa-tasks"]{ display: block; }', '', function(opts) {
         var _this = this;
 
         this.on('before-mount', () => {
@@ -100,6 +63,4 @@
 
             _this.update();
         };
-    </script>
-
-</fa-tasks>
+});
