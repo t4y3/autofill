@@ -26,13 +26,33 @@
     </style>
 
     <script>
+        this.on('before-mount', () => {
+            this.mixin('faObs');
+        });
+
         this.saveName = (e) => {
-            // TODO: ここでストレージに登録する
             e.preventDefault();
             var name = this.refs['task_name'].value;
-            if (this.opts.callback) {
-                this.opts.callback(name);
+
+            var tasks = this.opts.data;
+
+            var maxId = 0;
+            for (var i = 0, length = tasks.length; i < length; i++) {
+                if (maxId < tasks[i].id) {
+                    maxId = tasks[i].id;
+                }
             }
+
+
+            tasks.push({
+                id: maxId + 1,
+                name: name,
+                count: 0
+            });
+
+            chrome.storage.local.set({ tasks: tasks }, (items) => {
+                this.faObs.trigger('update_tasks', tasks);
+            });
         };
     </script>
 
