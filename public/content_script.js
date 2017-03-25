@@ -1,8 +1,8 @@
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-  $('[name="' + msg.name + '"]').eq(0).val(msg.value);
+  // $('[name="' + msg.name + '"]').eq(0).val(msg.value);
 
-  if (msg.color) {
-    document.body.style.backgroundColor = msg.color;
+  if (msg[0].name && msg[0].value) {
+      document.forms[0][msg[0].name].value = msg[0].value;
     sendResponse('Change color to ' + msg.color);
   } else {
     sendResponse('Color message is none.');

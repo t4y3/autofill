@@ -76,6 +76,40 @@
             }
         };
 
+        this.runTask = () => {
+            let data = [];
+            let $items = this.refs['task_item'];
+
+            if ($items.tagName) {
+                data.push(
+                    {
+                        type: $items.querySelector(".fa-input-type").value,
+                        name: $items.querySelector(".fa-input-name").value,
+                        value: $items.querySelector(".fa-input-value").value
+                    }
+                )
+            } else {
+                for (var i = 0, length = $items.length; i < length; i++) {
+                    data.push(
+                        {
+                            type: $items[i].querySelector(".fa-input-type").value,
+                            name: $items[i].querySelector(".fa-input-name").value,
+                            value: $items[i].querySelector(".fa-input-value").value
+                        }
+                    )
+                }
+            }
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, {
+                        'dafa': data
+                    },
+                    function(msg) {
+                        console.log(msg);
+                    }
+                );
+            });
+        };
+
         this.saveItems = () => {
             var obj = {};
             var $items = this.refs['task_item'];
