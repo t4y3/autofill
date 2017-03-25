@@ -4,14 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "riot": "riot --help",
-    "start": "npm run build & npm run copy & npm run watch & npm run api",
+    "start": "npm run build & npm run copy & npm run watch",
     "copy": "cpx 'src/*.html' -w public/build/ & cpx 'src/css/*.css' -w public/build/css/ & cpx 'src/js/*.js' -w public/build/js/",
     "build": "riot src/tags public/build/tags",
     "watch": "npm run watch:js & npm run watch:tag",
     "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run build'",
-    "watch:tag": "chokidar 'src/tags/**/*.tag' -c 'riot src/tags public/build/tags'",
-    "api": "json-server -w src/api/tasks.json -p 3005 & json-server -w src/api/items.json -p 3006"
+    "watch:tag": "chokidar 'src/tags/**/*.tag' -c 'riot src/tags public/build/tags'"
   },
   "repository": {
     "type": "git",
