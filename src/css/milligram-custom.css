@@ -6,17 +6,29 @@
 }
 
 /* Custom color */
-.button-black {
-  background-color: black;
-  border-color: black;
+.button {
+  background-color: #009688;
+  border-color: #009688;
 }
-.button-black.button-clear,
-.button-black.button-outline {
+.button.button-clear,
+.button.button-outline {
   background-color: transparent;
-  color: black;
+  color: #009688;
 }
-.button-black.button-clear {
+.button.button-clear {
   border-color: transparent;
+}
+
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='tel']:focus,
+input[type='text']:focus,
+input[type='url']:focus,
+textarea:focus,
+select:focus {
+  border-color: #009688;
 }
 
 /* Custom size */
@@ -36,9 +48,9 @@
 
 /* margin-bottom: 0 */
 .button, button, dd, dt, li {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 fieldset, input, select, textarea {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
