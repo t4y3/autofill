@@ -62,54 +62,62 @@
     </style>
 
     <script>
-        var _this = this;
-
         this.on('before-mount', () => {
             this.isEdit = false;
             this.items = this.opts.data;
-            debugger;
         });
 
+        /**
+         * 一覧画面への戻る処理
+         * @param  {object} e イベントオブジェクト
+         */
         this.back = (e) => {
             if (this.opts.callback) {
                 this.opts.callback();
             }
         };
 
+        /**
+         * タスクの実行
+         */
         this.runTask = () => {
             let data = [];
             let $items = this.refs['task_item'];
 
-            if ($items.tagName) {
-                data.push(
-                    {
-                        type: $items.querySelector(".fa-input-type").value,
-                        name: $items.querySelector(".fa-input-name").value,
-                        value: $items.querySelector(".fa-input-value").value
-                    }
-                )
-            } else {
-                for (var i = 0, length = $items.length; i < length; i++) {
-                    data.push(
-                        {
-                            type: $items[i].querySelector(".fa-input-type").value,
-                            name: $items[i].querySelector(".fa-input-name").value,
-                            value: $items[i].querySelector(".fa-input-value").value
+            var taskId = this.opts.taskId;
+            var obj = {};
+            obj[taskId] = [];
+
+            chrome.storage.local.get(obj, (data) => {
+
+                // 取得するタブの条件
+                var queryInfo = {
+                    active: true,
+                    windowId: chrome.windows.WINDOW_ID_CURRENT
+                };
+
+                // タブの情報を取得する
+                chrome.tabs.query(queryInfo, function (result) {
+                    // 配列の先頭に現在タブの情報が入っている
+                    var currentTab = result.shift();
+
+                    // 現在表示しているタブにメッセージを送る
+                    // chrome.tabs.sendMessage(currentTab.id, message, function() {});
+
+                    chrome.tabs.sendMessage(currentTab.id, {
+                            'data': data[taskId]
+                        },
+                        function(msg) {
+                            console.log(msg);
                         }
-                    )
-                }
-            }
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, {
-                        'dafa': data
-                    },
-                    function(msg) {
-                        console.log(msg);
-                    }
-                );
+                    );
+                });
             });
         };
 
+        /**
+         * アイテムの保存処理
+         */
         this.saveItems = () => {
             var obj = {};
             var $items = this.refs['task_item'];
@@ -139,17 +147,26 @@
                 )
             }
 
+            // Chromeのストレージに登録
             obj[this.opts.taskId] = itemData;
             chrome.storage.local.set(obj, () => {
                 debugger;
             });
         };
 
+        /**
+         * アイテムの削除処理
+         * @param  {object} e イベントオブジェクト
+         */
         this.deleteItem = (e) => {
             this.items.splice(e.item.i, 1);
             this.update();
         };
 
+        /**
+         * アイテムの追加処理
+         * @param  {object} e イベントオブジェクト
+         */
         this.addItem = (e) => {
             e.preventDefault();
             this.items.push({});

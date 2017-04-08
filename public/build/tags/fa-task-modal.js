@@ -5,6 +5,7 @@ riot.tag2('fa-task-modal', '<div class="fa-modal-inner"> <div class="row"> <div 
 
         this.saveName = (e) => {
             e.preventDefault();
+
             var name = this.refs['task_name'].value;
 
             var tasks = this.opts.data;

@@ -30,12 +30,19 @@
             this.mixin('faObs');
         });
 
+        /**
+         * 追加したタスクの保存処理
+         * @param  {object} e イベントオブジェクト
+         */
         this.saveName = (e) => {
             e.preventDefault();
+
             var name = this.refs['task_name'].value;
 
+            // 現在、登録されているタスク
             var tasks = this.opts.data;
 
+            // idの最大値を取得
             var maxId = 0;
             for (var i = 0, length = tasks.length; i < length; i++) {
                 if (maxId < tasks[i].id) {
@@ -43,13 +50,14 @@
                 }
             }
 
-
+            // タスクを追加
             tasks.push({
                 id: maxId + 1,
                 name: name,
                 count: 0
             });
 
+            // Chromeのストレージに登録
             chrome.storage.local.set({ tasks: tasks }, (items) => {
                 this.faObs.trigger('update_tasks', tasks);
             });

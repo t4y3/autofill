@@ -22,8 +22,10 @@
         </tbody>
     </table>
 
+    <!-- タスク編集画面 -->
     <fa-task-edit task-id="{ editTaskId }" data="{ items }" if="{ isEdit }" callback="{ backCallback }"></fa-task-edit>
 
+    <!-- タスク追加画面 -->
     <fa-task-modal data="{ tasks }" if="{ isModalOpen }"></fa-task-modal>
 
     <style>
@@ -33,18 +35,19 @@
     </style>
 
     <script>
-        var _this = this;
-
         this.on('before-mount', () => {
             this.mixin('faObs');
             this.isEdit = false;
             this.tasks = [];
             this.items = [];
             this.isModalOpen = false;
-            this.update();
 
+            // タスクを取得
             getTaskList();
 
+            /**
+             * タスク更新時の処理
+             */
             this.faObs.on('update_tasks', (data) => {
                 this.tasks = data;
                 this.isModalOpen = false;
@@ -52,21 +55,35 @@
             });
         });
 
+        /**
+         * 編集画面から一覧画面へ戻る処理
+         */
         this.backCallback = (name) => {
             this.isEdit = false;
             this.update();
         };
 
+        /**
+         * タスク追加処理
+         * @param {object} e イベントオブジェクト
+         */
         this.addTask = (e) => {
             e.preventDefault();
             this.isModalOpen = true;
             this.update();
         };
 
+        /**
+         * タスク編集処理
+         * @param {object} e イベントオブジェクト
+         */
         this.editTask = function(e) {
             getItemList(e.target.dataset.taskId);
         };
 
+        /**
+         * タスク一覧の取得処理
+         */
         var getTaskList = () => {
             var obj = {};
             obj.tasks = [];
@@ -77,6 +94,10 @@
             });
         };
 
+        /**
+         * アイテム一覧の取得処理
+         * @param  {string} id タスクID
+         */
         var getItemList = (id) => {
             var obj = {};
             obj[id] = [];
