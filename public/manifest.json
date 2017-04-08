@@ -3,7 +3,15 @@
   "name": "Autofill",
   "description": "Automatically enter form (text, textarea, select, checkbox, radio)",
   "version": "1.0",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "browser_action": {
+    "default_icon": {
+      "19": "icons/icon19.png"
+    },
     "default_title": "Autofill",
     "default_popup": "./build/index.html"
   },
