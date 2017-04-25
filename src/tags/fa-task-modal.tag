@@ -37,7 +37,7 @@
 
       // idの最大値を取得
       let maxId = 0;
-      for (var i = 0, length = this.tasks.length; i < length; i++) {
+      for (let i = 0, length = this.tasks.length; i < length; i++) {
         if (maxId < this.tasks[i].id) {
           maxId = this.tasks[i].id;
         }

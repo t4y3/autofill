@@ -31,6 +31,19 @@ select:focus {
   border-color: #009688;
 }
 
+.button-red {
+  background-color: #f44336;
+  border-color: #f44336;
+}
+.button-red.button-clear,
+.button-red.button-outline {
+  background-color: transparent;
+  color: #f44336;
+}
+.button-red.button-clear {
+  border-color: transparent;
+}
+
 a {
   color: #009688;
 }

@@ -14,7 +14,7 @@ riot.tag2('fa-task-modal', '<h1>Add</h1> <div class="row"> <div class="column co
       const name = this.refs['task_name'].value;
 
       let maxId = 0;
-      for (var i = 0, length = this.tasks.length; i < length; i++) {
+      for (let i = 0, length = this.tasks.length; i < length; i++) {
         if (maxId < this.tasks[i].id) {
           maxId = this.tasks[i].id;
         }

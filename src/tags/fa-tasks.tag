@@ -5,12 +5,14 @@
       <tr>
         <th>Name</th>
         <th>Run</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr each="{ tasks }">
         <td><a href="#" data-task-id="{ id }" onclick="{ editTask }">{ name }</a></td>
-        <td><a class="button button-small" href="#">Run</a></td>
+        <td><a class="button button-small" href="#" data-task-id="{ id }" onclick="{ runTask }">Run</a></td>
+        <td><a class="button button-red button-small" href="#" data-task-id="{ id }" onclick="{ deleteTask }">Delete</a></td>
       </tr>
       <tr>
         <td></td>
@@ -60,6 +62,59 @@
       chrome.storage.local.get(obj, (data) => {
         this.tasks = data.tasks;
         this.update();
+      });
+    };
+
+    /**
+     * タスクの削除
+     * @param  {object} e イベントオブジェクト
+     */
+    this.deleteTask = (e) => {
+      e.preventDefault();
+
+      const taskId = e.target.dataset.taskId;
+
+      let tasks = this.tasks.filter((v, i) => {
+        return (v.id !== parseInt(taskId, 10));
+      });
+
+      // Chromeのストレージに登録
+      chrome.storage.local.set({ tasks: tasks }, (items) => {
+        this.tasks = tasks;
+        this.update();
+      });
+    };
+
+    /**
+     * タスクの実行
+     */
+    this.runTask = (e) => {
+      const taskId = e.target.dataset.taskId;
+      const obj = {};
+      obj[taskId] = [];
+
+      chrome.storage.local.get(obj, (data) => {
+
+        // 取得するタブの条件
+        let queryInfo = {
+          active: true,
+          windowId: chrome.windows.WINDOW_ID_CURRENT
+        };
+
+        // タブの情報を取得する
+        chrome.tabs.query(queryInfo, function (result) {
+          // 配列の先頭に現在タブの情報が入っている
+          let currentTab = result.shift();
+
+          // 現在表示しているタブにメッセージを送る
+          chrome.tabs.sendMessage(currentTab.id, {
+              'data': data[taskId]
+            },
+            function(msg) {
+              console.log(msg);
+            }
+          );
+        });
       });
     };
 

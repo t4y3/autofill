@@ -1,5 +1,4 @@
 <fa-root>
-  <!-- tag -->
   <fa-tasks if="{ scene === 'list' }"></fa-tasks>
 
   <fa-task-edit task-id="{ taskId }" if="{ scene === 'edit' }"></fa-task-edit>
