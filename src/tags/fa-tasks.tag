@@ -1,5 +1,5 @@
 <fa-tasks>
-    <h1 show="{ !isEdit }">Task List</h1>
+    <h1 show="{ !isEdit }">List</h1>
     <table show="{ !isEdit }">
         <thead>
             <tr>
@@ -46,9 +46,17 @@
             getTaskList();
 
             /**
+             * タスク追加処理のキャンセル
+             */
+            this.faObs.on('cancel', () => {
+                this.isModalOpen = false;
+                this.update();
+            });
+
+            /**
              * タスク更新時の処理
              */
-            this.faObs.on('update_tasks', (data) => {
+            this.faObs.on('add_task', (data) => {
                 this.tasks = data;
                 this.isModalOpen = false;
                 this.update();

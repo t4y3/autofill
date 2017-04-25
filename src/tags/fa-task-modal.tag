@@ -1,8 +1,9 @@
 <fa-task-modal>
     <div class="fa-modal-inner">
         <div class="row">
-            <div class="column column-75"><input ref="task_name" type="text" placeholder="NAME" value=""></div>
-            <div class="column column-25"><a class="button button-small" href="#" onclick="{ saveName }">Add</a></div>
+            <div class="column column-50"><input ref="task_name" type="text" placeholder="NAME" value=""></div>
+            <div class="column column-25"><a class="button button-small" href="#" onclick="{ cancel }">Cancel</a></div>
+            <div class="column column-25"><a class="button button-small" href="#" onclick="{ addTask }">Add</a></div>
         </div>
     </div>
 
@@ -31,19 +32,26 @@
         });
 
         /**
-         * 追加したタスクの保存処理
+         * キャンセル
+         */
+        this.cancel = () => {
+            this.faObs.trigger('cancel');
+        };
+
+        /**
+         * タスクの追加
          * @param  {object} e イベントオブジェクト
          */
-        this.saveName = (e) => {
+        this.addTask = (e) => {
             e.preventDefault();
 
-            var name = this.refs['task_name'].value;
+            const name = this.refs['task_name'].value;
 
             // 現在、登録されているタスク
-            var tasks = this.opts.data;
+            const tasks = this.opts.data;
 
             // idの最大値を取得
-            var maxId = 0;
+            let maxId = 0;
             for (var i = 0, length = tasks.length; i < length; i++) {
                 if (maxId < tasks[i].id) {
                     maxId = tasks[i].id;
@@ -59,7 +67,7 @@
 
             // Chromeのストレージに登録
             chrome.storage.local.set({ tasks: tasks }, (items) => {
-                this.faObs.trigger('update_tasks', tasks);
+                this.faObs.trigger('add_task', tasks);
             });
         };
     </script>
