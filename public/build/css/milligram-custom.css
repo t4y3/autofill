@@ -31,6 +31,10 @@ select:focus {
   border-color: #009688;
 }
 
+a {
+  color: #009688;
+}
+
 /* Custom size */
 .button-small {
   font-size: .8rem;

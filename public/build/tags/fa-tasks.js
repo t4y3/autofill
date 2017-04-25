@@ -1,42 +1,21 @@
-riot.tag2('fa-tasks', '<h1 show="{!isEdit}">List</h1> <table show="{!isEdit}"> <thead> <tr> <th>Name</th> <th>Edit</th> <th>Run</th> </tr> </thead> <tbody> <tr each="{tasks}"> <td>{name}</td> <td><a class="button button-small button-outline" href="#" data-task-id="{id}" onclick="{editTask}">Edit</a></td> <td><a class="button button-small" href="#">Run</a></td> </tr> <tr> <td></td> <td></td> <td><a class="button button-small" href="#" onclick="{addTask}">Add</a></td> </tr> </tbody> </table> <fa-task-edit task-id="{editTaskId}" data="{items}" if="{isEdit}" callback="{backCallback}"></fa-task-edit> <fa-task-modal data="{tasks}" if="{isModalOpen}"></fa-task-modal>', 'fa-tasks,[data-is="fa-tasks"]{ display: block; }', '', function(opts) {
+riot.tag2('fa-tasks', '<h1>List</h1> <table> <thead> <tr> <th>Name</th> <th>Run</th> </tr> </thead> <tbody> <tr each="{tasks}"> <td><a href="#" data-task-id="{id}" onclick="{editTask}">{name}</a></td> <td><a class="button button-small" href="#">Run</a></td> </tr> <tr> <td></td> <td><a class="button button-small" href="#" onclick="{addTask}">Add</a></td> </tr> </tbody> </table>', 'fa-tasks,[data-is="fa-tasks"]{ display: block; }', '', function(opts) {
         this.on('before-mount', () => {
             this.mixin('faObs');
-            this.isEdit = false;
             this.tasks = [];
-            this.items = [];
-            this.isModalOpen = false;
 
             getTaskList();
-
-            this.faObs.on('cancel', () => {
-                this.isModalOpen = false;
-                this.update();
-            });
-
-            this.faObs.on('add_task', (data) => {
-                this.tasks = data;
-                this.isModalOpen = false;
-                this.update();
-            });
         });
 
-        this.backCallback = (name) => {
-            this.isEdit = false;
-            this.update();
-        };
-
         this.addTask = (e) => {
-            e.preventDefault();
-            this.isModalOpen = true;
-            this.update();
+            this.faObs.trigger('change_scene', 'add');
         };
 
         this.editTask = function(e) {
-            getItemList(e.target.dataset.taskId);
+            this.faObs.trigger('change_scene', 'edit', e.target.dataset.taskId);
         };
 
-        var getTaskList = () => {
-            var obj = {};
+        const getTaskList = () => {
+            const obj = {};
             obj.tasks = [];
 
             chrome.storage.local.get(obj, (data) => {
@@ -45,15 +24,4 @@ riot.tag2('fa-tasks', '<h1 show="{!isEdit}">List</h1> <table show="{!isEdit}"> <
             });
         };
 
-        var getItemList = (id) => {
-            var obj = {};
-            obj[id] = [];
-            this.editTaskId = id;
-
-            chrome.storage.local.get(obj, (data) => {
-                this.isEdit = true;
-                this.items = data[id];
-                this.update();
-            });
-        };
 });

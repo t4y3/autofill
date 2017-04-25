@@ -1,5 +1,4 @@
 <fa-task-edit>
-    <!-- tag -->
     <h1>Edit</h1>
     <div class="fa-buttons">
         <a class="button button-small" href="#" onclick="{ back }">Back</a>
@@ -63,8 +62,10 @@
 
     <script>
         this.on('before-mount', () => {
-            this.isEdit = false;
-            this.items = this.opts.data;
+            this.mixin('faObs');
+            this.items = [];
+
+            getItemList(this.opts.taskId);
         });
 
         /**
@@ -72,9 +73,7 @@
          * @param  {object} e イベントオブジェクト
          */
         this.back = (e) => {
-            if (this.opts.callback) {
-                this.opts.callback();
-            }
+            this.faObs.trigger('change_scene', 'list');
         };
 
         /**
@@ -151,6 +150,21 @@
             obj[this.opts.taskId] = itemData;
             chrome.storage.local.set(obj, () => {
                 debugger;
+            });
+        };
+
+        /**
+        * アイテム一覧の取得処理
+        * @param  {string} id タスクID
+        */
+        const getItemList = (id) => {
+            const obj = {};
+            obj[id] = [];
+            this.editTaskId = id;
+
+            chrome.storage.local.get(obj, (data) => {
+                this.items = data[id];
+                this.update();
             });
         };
 
