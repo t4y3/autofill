@@ -82,6 +82,7 @@
       // Chromeのストレージに登録
       obj[this.opts.taskId] = itemData;
       chrome.storage.local.set(obj, () => {
+        this.faObs.trigger('show_toast', 'normal', 'Saved!!');
         fn();
       });
     };

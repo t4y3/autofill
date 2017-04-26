@@ -5,6 +5,8 @@
 
   <fa-task-add if="{ scene === 'add' }"></fa-task-add>
 
+  <fa-toast></fa-toast>
+
   <style>
     :scope {
       display: block;

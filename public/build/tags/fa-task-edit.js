@@ -41,6 +41,7 @@ riot.tag2('fa-task-edit', '<h1>Edit</h1> <a class="button button-small" href="#"
 
       obj[this.opts.taskId] = itemData;
       chrome.storage.local.set(obj, () => {
+        this.faObs.trigger('show_toast', 'normal', 'Saved!!');
         fn();
       });
     };
