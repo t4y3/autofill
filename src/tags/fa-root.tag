@@ -1,9 +1,9 @@
 <fa-root>
-  <fa-tasks if="{ scene === 'list' }"></fa-tasks>
+  <fa-task-list if="{ scene === 'list' }"></fa-task-list>
 
   <fa-task-edit task-id="{ taskId }" if="{ scene === 'edit' }"></fa-task-edit>
 
-  <fa-task-modal if="{ scene === 'add' }"></fa-task-modal>
+  <fa-task-add if="{ scene === 'add' }"></fa-task-add>
 
   <style>
     :scope {

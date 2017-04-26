@@ -1,4 +1,4 @@
-<fa-task-modal>
+<fa-task-add>
   <h1>Add</h1>
   <div class="row">
     <div class="column column-50"><input ref="task_name" type="text" placeholder="NAME" value=""></div>
@@ -70,4 +70,4 @@
     };
   </script>
 
-</fa-task-modal>
+</fa-task-add>

@@ -1,4 +1,4 @@
-riot.tag2('fa-root', '<fa-tasks if="{scene === \'list\'}"></fa-tasks> <fa-task-edit task-id="{taskId}" if="{scene === \'edit\'}"></fa-task-edit> <fa-task-modal if="{scene === \'add\'}"></fa-task-modal>', 'fa-root,[data-is="fa-root"]{ display: block; }', '', function(opts) {
+riot.tag2('fa-root', '<fa-task-list if="{scene === \'list\'}"></fa-task-list> <fa-task-edit task-id="{taskId}" if="{scene === \'edit\'}"></fa-task-edit> <fa-task-add if="{scene === \'add\'}"></fa-task-add>', 'fa-root,[data-is="fa-root"]{ display: block; }', '', function(opts) {
 
     this.scene = 'list';
 

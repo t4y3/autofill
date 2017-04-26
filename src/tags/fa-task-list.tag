@@ -1,4 +1,4 @@
-<fa-tasks>
+<fa-task-list>
   <h1>List</h1>
   <table>
     <thead>
@@ -120,4 +120,4 @@
 
   </script>
 
-</fa-tasks>
+</fa-task-list>
