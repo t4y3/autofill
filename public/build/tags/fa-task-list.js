@@ -1,4 +1,4 @@
-riot.tag2('fa-task-list', '<h1>List</h1> <table> <thead> <tr> <th>Name</th> <th>Run</th> <th></th> </tr> </thead> <tbody> <tr each="{tasks}"> <td><a href="#" data-task-id="{id}" onclick="{editTask}">{name}</a></td> <td><a class="button button-small" href="#" data-task-id="{id}" onclick="{runTask}">Run</a></td> <td><a class="button button-red button-small" href="#" data-task-id="{id}" onclick="{deleteTask}">Delete</a></td> </tr> <tr> <td></td> <td><a class="button button-small" href="#" onclick="{addTask}">Add</a></td> </tr> </tbody> </table>', 'fa-task-list,[data-is="fa-task-list"]{ display: block; }', '', function(opts) {
+riot.tag2('fa-task-list', '<h1>List</h1> <table> <thead> <tr> <th>Name</th> <th>Run</th> <th></th> </tr> </thead> <tbody> <tr each="{tasks}"> <td><a href="#" data-task-id="{id}" onclick="{editTask}">{name}</a></td> <td><a class="button button-small" href="#" data-task-id="{id}" onclick="{runTask}">Run</a></td> <td><a class="button button-red button-small" href="#" data-task-id="{id}" onclick="{deleteTask}">Delete</a></td> </tr> <tr> <td></td> <td></td> <td><a class="button button-small" href="#" onclick="{addTask}">Add</a></td> </tr> </tbody> </table>', 'fa-task-list,[data-is="fa-task-list"]{ display: block; }', '', function(opts) {
     this.on('before-mount', () => {
       this.mixin('faObs');
       this.tasks = [];
@@ -34,6 +34,7 @@ riot.tag2('fa-task-list', '<h1>List</h1> <table> <thead> <tr> <th>Name</th> <th>
       });
 
       chrome.storage.local.set({ tasks: tasks }, (items) => {
+        this.faObs.trigger('show_toast', 'normal', 'Deleted!!');
         this.tasks = tasks;
         this.update();
       });

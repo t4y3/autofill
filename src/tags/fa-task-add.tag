@@ -52,6 +52,7 @@
 
       // Chromeのストレージに登録
       chrome.storage.local.set({ tasks: this.tasks }, (items) => {
+        this.faObs.trigger('show_toast', 'normal', 'Added!!');
         this.faObs.trigger('change_scene', 'list');
       });
     };

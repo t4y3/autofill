@@ -16,6 +16,7 @@
       </tr>
       <tr>
         <td></td>
+        <td></td>
         <td><a class="button button-small" href="#" onclick="{ addTask }">Add</a></td>
       </tr>
     </tbody>
@@ -80,6 +81,7 @@
 
       // Chromeのストレージに登録
       chrome.storage.local.set({ tasks: tasks }, (items) => {
+        this.faObs.trigger('show_toast', 'normal', 'Deleted!!');
         this.tasks = tasks;
         this.update();
       });

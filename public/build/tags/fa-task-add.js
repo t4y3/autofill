@@ -27,6 +27,7 @@ riot.tag2('fa-task-add', '<h1>Add</h1> <div class="row"> <div class="column colu
       });
 
       chrome.storage.local.set({ tasks: this.tasks }, (items) => {
+        this.faObs.trigger('show_toast', 'normal', 'Added!!');
         this.faObs.trigger('change_scene', 'list');
       });
     };
