@@ -1,6 +1,10 @@
 <fa-task-add>
   <h1>Add</h1>
-  <input ref="task_name" type="text" placeholder="NAME" value="">
+  <div class="">
+    <input ref="task_name" type="text" placeholder="address" value="">
+    <span if="{ isError }">{ errorMessage }</span>
+  </div>
+
   <div class="fa-buttons">
     <div class="fa-button"><a class="button button-outline button-small" href="#" onclick="{ cancel }">Cancel</a></div>
     <div class="fa-button"><a class="button button-small" href="#" onclick="{ addTask }">Add</a></div>
@@ -9,6 +13,12 @@
   <style>
     :scope {
       display: block;
+    }
+
+    span {
+      padding-left: 5px;
+      font-size: 1.4rem;
+      color: #f44336;
     }
 
     .fa-buttons {
@@ -26,6 +36,8 @@
   <script>
     this.on('before-mount', () => {
       this.mixin('faObs');
+      this.isError = false;
+      this.errorMessage = '';
       getTaskList();
     });
 
@@ -44,6 +56,14 @@
       e.preventDefault();
 
       const name = this.refs['task_name'].value;
+
+      // エラーチェック
+      if (!(/\S/.test(name))) {
+        this.isError = true;
+        this.errorMessage = 'Please enter';
+        this.update();
+        return;
+      }
 
       // idの最大値を取得
       let maxId = 0;
