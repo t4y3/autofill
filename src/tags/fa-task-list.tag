@@ -1,6 +1,11 @@
 <fa-task-list>
   <h1>List</h1>
   <table>
+    <colgroup>
+      <col width="80%">
+      <col width="10%">
+      <col width="10%">
+    </colgroup>
     <thead>
       <tr>
         <th>Name</th>
@@ -11,13 +16,13 @@
     <tbody>
       <tr each="{ tasks }">
         <td><a href="#" data-task-id="{ id }" onclick="{ editTask }">{ name }</a></td>
-        <td><a class="button button-small" href="#" data-task-id="{ id }" onclick="{ runTask }">Run</a></td>
-        <td><a class="button button-red button-small" href="#" data-task-id="{ id }" onclick="{ deleteTask }">Delete</a></td>
+        <td><a class="fa-button button button-small" href="#" data-task-id="{ id }" onclick="{ runTask }">Run</a></td>
+        <td><a class="fa-button button button-red button-small" href="#" data-task-id="{ id }" onclick="{ deleteTask }">Delete</a></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
-        <td><a class="button button-small" href="#" onclick="{ addTask }">Add</a></td>
+        <td><a class="fa-button button button-small" href="#" onclick="{ addTask }">Add</a></td>
       </tr>
     </tbody>
   </table>
@@ -25,6 +30,10 @@
   <style>
     :scope {
       display: block;
+    }
+
+    .fa-button {
+      width: 100%;
     }
   </style>
 
@@ -104,7 +113,7 @@
         };
 
         // タブの情報を取得する
-        chrome.tabs.query(queryInfo, function (result) {
+        chrome.tabs.query(queryInfo, (result) => {
           // 配列の先頭に現在タブの情報が入っている
           let currentTab = result.shift();
 
@@ -112,8 +121,8 @@
           chrome.tabs.sendMessage(currentTab.id, {
               'data': data[taskId]
             },
-            function(msg) {
-              console.log(msg);
+            (msg) => {
+              this.faObs.trigger('show_toast', 'normal', 'Run!!');
             }
           );
         });

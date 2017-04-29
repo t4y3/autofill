@@ -1,4 +1,4 @@
-<fa-toast show="{ isShow }">
+<fa-toast class={ show: isShow }>
   <p class="toast-text { type }">{ text }</p>
 
   <style>
@@ -8,6 +8,12 @@
       top: 0;
       right: 0;
       margin: 20px;
+      opacity: 0;
+      transition: opacity .2s linear;
+    }
+
+    :scope.show {
+      opacity: 1;
     }
 
     .toast-text {

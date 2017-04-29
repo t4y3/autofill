@@ -3,6 +3,11 @@
   <a class="button button-small" href="#" onclick="{ back }">Back</a>
   <form>
     <table>
+      <colgroup>
+        <col width="30%">
+        <col width="60%">
+        <col width="10%">
+      </colgroup>
       <thead>
         <tr>
           <th>Name</th>
@@ -14,12 +19,12 @@
         <tr each="{ items }" ref="task_item">
           <td><input class="fa-input-name" type="text" placeholder="NAME" value="{ name }"></td>
           <td><input class="fa-input-value" type="text" placeholder="John Smith" value="{ value }"></td>
-          <td><a class="button button-small button-red" href="#" onclick="{ deleteItem }">Delete</a></td>
+          <td><a class="fa-button button button-small button-red" href="#" onclick="{ deleteItem }">Delete</a></td>
         </tr>
         <tr>
           <td></td>
           <td></td>
-          <td><a class="button button-small" href="#" onclick="{ addItem }">Add</a></td>
+          <td><a class="fa-button button button-small" href="#" onclick="{ addItem }">Add</a></td>
         </tr>
       </tbody>
     </table>
@@ -28,6 +33,10 @@
   <style>
     :scope {
       display: block;
+    }
+
+    .fa-button {
+      width: 100%;
     }
   </style>
 

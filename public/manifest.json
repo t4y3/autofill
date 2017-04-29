@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Autofill",
-  "description": "Automatically enter form (text, textarea, select, checkbox, radio)",
+  "description": "Automatically enter form (text, select, radio)",
   "version": "1.0",
   "icons": {
     "16": "icons/icon16.png",
