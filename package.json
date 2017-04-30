@@ -23,11 +23,8 @@
   },
   "homepage": "https://github.com/t4y3/autofill#readme",
   "devDependencies": {
-    "browserify": "^14.1.0",
     "chokidar-cli": "^1.2.0",
     "cpx": "^1.5.0",
-    "riot": "^3.3.2",
-    "riotify": "^2.0.0",
-    "superagent": "^3.5.0"
+    "riot": "^3.3.2"
   }
 }
