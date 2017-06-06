@@ -1,19 +1,15 @@
-<fa-root>
-  <fa-task-list if="{ scene === 'list' }"></fa-task-list>
+fa-root
+  fa-task-list(if="{ scene === 'list' }")
+  fa-task-edit(task-id="{ taskId }" if="{ scene === 'edit' }")
+  fa-task-add(if="{ scene === 'add' }")
+  fa-toast
 
-  <fa-task-edit task-id="{ taskId }" if="{ scene === 'edit' }"></fa-task-edit>
-
-  <fa-task-add if="{ scene === 'add' }"></fa-task-add>
-
-  <fa-toast></fa-toast>
-
-  <style>
+  style.
     :scope {
       display: block;
     }
-  </style>
 
-  <script>
+  script.
 
     this.scene = 'list';
 
@@ -32,7 +28,3 @@
         this.update();
       });
     });
-
-  </script>
-
-</fa-root>

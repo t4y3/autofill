@@ -1,33 +1,30 @@
-<fa-task-list>
-  <h1>List</h1>
-  <table>
-    <colgroup>
-      <col width="80%">
-      <col width="10%">
-      <col width="10%">
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Run</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr each="{ tasks }">
-        <td><a href="#" data-task-id="{ id }" onclick="{ editTask }">{ name }</a></td>
-        <td><a class="fa-button button button-small" href="#" data-task-id="{ id }" onclick="{ runTask }">Run</a></td>
-        <td><a class="fa-button button button-red button-small" href="#" data-task-id="{ id }" onclick="{ deleteTask }">Delete</a></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td><a class="fa-button button button-small" href="#" onclick="{ addTask }">Add</a></td>
-      </tr>
-    </tbody>
-  </table>
+fa-task-list
+  h1 List
+  table
+    colgroup
+      col(width="80%")
+      col(width="10%")
+      col(width="10%")
+    thead
+      tr
+        th Name
+        th Run
+        th
+    tbody
+      tr(each="{ tasks }")
+        td
+          a(href="#" data-task-id="{ id }" onclick="{ editTask }") { name }
+        td
+          a.fa-button.button.button-small(href="#" data-task-id="{ id }" onclick="{ runTask }") Run
+        td
+          a.fa-button.button.button-red.button-small(href="#" data-task-id="{ id }" onclick="{ deleteTask }") Delete
+      tr
+        td
+        td
+        td
+          a.fa-button.button.button-small(href="#" onclick="{ addTask }") Add
 
-  <style>
+  style.
     :scope {
       display: block;
     }
@@ -35,9 +32,8 @@
     .fa-button {
       width: 100%;
     }
-  </style>
 
-  <script>
+  script.
     this.on('before-mount', () => {
       this.mixin('faObs');
       this.tasks = [];
@@ -128,7 +124,3 @@
         });
       });
     };
-
-  </script>
-
-</fa-task-list>

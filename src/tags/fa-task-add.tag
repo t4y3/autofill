@@ -1,16 +1,16 @@
-<fa-task-add>
-  <h1>Add</h1>
-  <div class="">
-    <input ref="task_name" type="text" placeholder="address" value="">
-    <span if="{ isError }">{ errorMessage }</span>
-  </div>
+fa-task-add
+  h1 Add
+  div
+    input(ref="task_name" type="text" placeholder="address" value="")
+    span(if="{ isError }">{ errorMessage })
 
-  <div class="fa-buttons">
-    <div class="fa-button"><a class="button button-outline button-small" href="#" onclick="{ cancel }">Cancel</a></div>
-    <div class="fa-button"><a class="button button-small" href="#" onclick="{ addTask }">Add</a></div>
-  </div>
+  .fa-buttons
+    .fa-button
+      a.button.button-outline.button-small(href="#" onclick="{ cancel }") Cancel
+    .fa-button
+      a.button.button-small(href="#" onclick="{ addTask }") Add
 
-  <style>
+  style.
     :scope {
       display: block;
     }
@@ -31,9 +31,7 @@
       margin-right: 20px;
     }
 
-  </style>
-
-  <script>
+  script.
     this.on('before-mount', () => {
       this.mixin('faObs');
       this.isError = false;
@@ -99,6 +97,3 @@
         this.update();
       });
     };
-  </script>
-
-</fa-task-add>

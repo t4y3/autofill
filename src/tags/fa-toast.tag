@@ -1,7 +1,7 @@
-<fa-toast class={ show: isShow }>
-  <p class="toast-text { type }">{ text }</p>
+fa-toast(class={ show: isShow })
+  p.toast-text(class="{ type }") { text }
 
-  <style>
+  style.
     :scope {
       display: block;
       position: fixed;
@@ -30,9 +30,8 @@
     .toast-text.error {
       background-color: #f44336;
     }
-  </style>
 
-  <script>
+  script.
 
     this.on('before-mount', () => {
       this.mixin('faObs');
@@ -52,7 +51,3 @@
         }, 3000)
       });
     });
-
-  </script>
-
-</fa-toast>
