@@ -2,7 +2,7 @@ fa-task-add
   h1 Add
   div
     input(ref="task_name" type="text" placeholder="address" value="")
-    span(if="{ isError }">{ errorMessage })
+    span(if="{ isError }") { errorMessage }
 
   .fa-buttons
     .fa-button
