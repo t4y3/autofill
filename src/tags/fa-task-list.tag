@@ -1,15 +1,10 @@
 fa-task-list
   h1 List
-  table
+  table(if="{ tasks.length }")
     colgroup
       col(width="80%")
       col(width="10%")
       col(width="10%")
-    thead
-      tr
-        th Name
-        th Run
-        th
     tbody
       tr(each="{ tasks }")
         td
@@ -24,6 +19,9 @@ fa-task-list
         td
           a.fa-button.button.button-small(href="#" onclick="{ addTask }") Add
 
+  .empty-text
+    p.empty-text__text タスクがありません
+
   style.
     :scope {
       display: block;
@@ -31,6 +29,19 @@ fa-task-list
 
     .fa-button {
       width: 100%;
+    }
+
+    .empty-text {
+      padding: 20px;
+      background-color: #fafbfc;
+      border: 1px solid #e1e4e8;
+      border-radius: 3px;
+      box-shadow: inset 0 0 10px rgba(27,31,35,0.05);
+    }
+
+    .empty-text .empty-text__text{
+      margin: 0;
+      text-align: center;
     }
 
   script.
